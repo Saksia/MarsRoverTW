@@ -13,7 +13,7 @@ public class Rover_Direction_ {
     public void setUp(){
 
         plateau = new Plateau(5,5);
-        rover = new Rover(1,3, Orientation.NORTH, plateau);
+        rover = new Rover(1,3, "N", plateau);
 
     }
 
