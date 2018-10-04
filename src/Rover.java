@@ -31,7 +31,7 @@ public class Rover {
                 orientation_ = Orientation.WEST;
                 break;
             default:
-                throw new AssertionError("");
+                throw new AssertionError("ERROR. Unexpected command. Orientation should be 'N', 'S', 'E' or 'W'");
         }
     }
 
@@ -54,21 +54,24 @@ public class Rover {
 
     private void move() {
 
+        int x = this.x;
+        int y = this.y;
+
         switch (orientation_.value()){
             case "N":
-                checkIfNewPositionIsLegal(this.x, this.y++);
+                checkIfNewPositionIsLegal(x, y++);
                 this.y++;
                 break;
             case "S":
-                checkIfNewPositionIsLegal(this.x, this.y--);
+                checkIfNewPositionIsLegal(x, y--);
                 this.y--;
                 break;
             case "E":
-                checkIfNewPositionIsLegal(this.x++, this.y);
+                checkIfNewPositionIsLegal(x++, y);
                 this.x++;
                 break;
             case "W":
-                checkIfNewPositionIsLegal(this.x--, this.y);
+                checkIfNewPositionIsLegal(x--, y);
                 this.x--;
                 break;
             default:
