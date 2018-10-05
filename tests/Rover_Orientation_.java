@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-public class Rover_Direction_ {
+public class Rover_Orientation_ {
 
     private Plateau plateau;
     private Rover rover;
