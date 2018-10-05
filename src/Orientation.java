@@ -28,6 +28,8 @@ enum Orientation {
         return value;
     }
 
+
+
     private Orientation rotateToThe(String rotationValue) {
         for (Orientation orientation : values()) {
             if (orientation.value == rotationValue) return orientation;

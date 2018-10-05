@@ -9,11 +9,10 @@ public class Plateau {
         this.y = y;
     }
 
-    public int getUpperRightX() {
-        return this.x;
-    }
+    public int getUpperRightX() { return this.x; }
 
     public int getUpperRightY(){
         return this.y;
     }
+
 }

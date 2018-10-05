@@ -38,8 +38,20 @@ public class Commands_ {
 
 
     @Test (expected = AssertionError.class)
-    public void should_throw_exception(){
+    public void should_throw_no_enough_lines_exception(){
         commandExecution = new CommandExecution("5 5\n1 2 N");
+        commandExecution.process();
+    }
+
+    @Test (expected = AssertionError.class)
+    public void should_throw_no_correct_command_exception(){
+        commandExecution = new CommandExecution("5 5\n1 2 N\nJ");
+        commandExecution.process();
+    }
+
+    @Test (expected = AssertionError.class)
+    public void should_throw_no_enough_rover_information_exception(){
+        commandExecution = new CommandExecution("5 5\n1 2 N\nRLRLRL\n1 2 N");
         commandExecution.process();
     }
 

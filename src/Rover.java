@@ -7,12 +7,34 @@ public class Rover {
     private Orientation orientation_;
 
 
+    //GETTERS
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+
+    //SETTERS
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+
     public Rover(int x, int y, String orientation, Plateau plateau){
         this.x = x;
         this.y = y;
         this.orientation = orientation;
         this.plateau = plateau;
 
+        checkIfPositionIsLegal(x,y);
         setOrientation();
     }
 
@@ -49,26 +71,26 @@ public class Rover {
 
     private void move() {
 
-        int x = this.x;
-        int y = this.y;
+        int x = getX();
+        int y = getY();
 
 
-        switch (orientation_.value()){
-            case "N":
-                checkIfNewPositionIsLegal(x, y++);
-                this.y++;
+        switch (orientation_){
+            case NORTH:
+                checkIfPositionIsLegal(x, y++);
+                setY(y++);
                 break;
-            case "S":
-                checkIfNewPositionIsLegal(x, y--);
-                this.y--;
+            case SOUTH:
+                checkIfPositionIsLegal(x, y--);
+                setY(y--);
                 break;
-            case "E":
-                checkIfNewPositionIsLegal(x++, y);
-                this.x++;
+            case EAST:
+                checkIfPositionIsLegal(x++, y);
+                setX(x++);
                 break;
-            case "W":
-                checkIfNewPositionIsLegal(x--, y);
-                this.x--;
+            case WEST:
+                checkIfPositionIsLegal(x--, y);
+                setX(x--);
                 break;
             default:
                 throw new AssertionError("ERROR. Rover's orientation should be 'N', 'S', 'E' or 'W'");
@@ -77,7 +99,7 @@ public class Rover {
 
     }
 
-    private void checkIfNewPositionIsLegal(int newPositionX, int newPositionY){
+    private void checkIfPositionIsLegal(int newPositionX, int newPositionY){
         if((newPositionX > plateau.getUpperRightX()
                 || newPositionY > plateau.getUpperRightY())
                 || (newPositionX < 0 || newPositionY < 0 )){
