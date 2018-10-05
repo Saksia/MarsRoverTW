@@ -5,15 +5,16 @@ enum Orientation {
     EAST("E", "N", "S"),
     WEST("W", "S", "N");
 
-    private final String value;
-    private final String left;
-    private final String right;
+    private  String value;
+    private  String left;
+    private  String right;
 
     Orientation(String value, String left, String right) {
         this.value = value;
         this.left = left;
         this.right = right;
     }
+
 
     public Orientation right() {
         return rotateToThe(right);

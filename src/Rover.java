@@ -17,22 +17,17 @@ public class Rover {
     }
 
     private void setOrientation() {
-        switch (this.orientation){
-            case "N":
-                orientation_ = Orientation.NORTH;
-                break;
-            case "S":
-                orientation_ = Orientation.SOUTH;
-                break;
-            case "E":
-                orientation_ = Orientation.EAST;
-                break;
-            case "W":
-                orientation_ = Orientation.WEST;
-                break;
-            default:
-                throw new AssertionError("ERROR. Unexpected command. Orientation should be 'N', 'S', 'E' or 'W'");
+
+        for (Orientation orientation : Orientation.values() ) {
+            if(this.orientation.equals(orientation.value())){
+                orientation_ = orientation;
+            }
         }
+
+        if(orientation_.value()==null){
+            throw new AssertionError("ERROR. Unexpected command. Commands should be 'L', 'R' or 'M'");
+        }
+
     }
 
     public String executeCommand(String command){
@@ -57,6 +52,7 @@ public class Rover {
         int x = this.x;
         int y = this.y;
 
+
         switch (orientation_.value()){
             case "N":
                 checkIfNewPositionIsLegal(x, y++);
@@ -77,6 +73,8 @@ public class Rover {
             default:
                 throw new AssertionError("ERROR. Rover's orientation should be 'N', 'S', 'E' or 'W'");
         }
+
+
     }
 
     private void checkIfNewPositionIsLegal(int newPositionX, int newPositionY){
