@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class Rover_Direction_ {
 
     private Plateau plateau;
-    private Rover rover, rover2;
+    private Rover rover;
 
     @Before
     public void setUp(){
