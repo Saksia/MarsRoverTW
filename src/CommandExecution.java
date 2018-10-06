@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IllegalFormatException;
 
 public class CommandExecution {
 
@@ -46,7 +47,6 @@ public class CommandExecution {
 
         checkCommandLine();
         output = output+rover.executeCommand(commandLines.get(0))+"\n";
-
         removeLine();
     }
 
@@ -87,7 +87,7 @@ public class CommandExecution {
 
     private void checkPlateauLine(String[] plateauParams) {
         if(plateauParams.length != PLATEAU_PARAMS){
-            throw new AssertionError("Plateau parameters should be 2");
+            throw new IllegalArgumentException("Plateau parameters should be 2");
         }
 
     }
@@ -95,21 +95,21 @@ public class CommandExecution {
 
     private void checkInputLines(int inputLinesSize){
         if(inputLinesSize< MIN_INPUT_LINES){
-            throw new AssertionError("Input lines should be, at least, 3 lines");
+            throw new IllegalArgumentException("Input lines should be, at least, 3 lines");
         }
     }
 
 
     private void checkCommandLine() {
         if(commandLines.isEmpty()){
-            throw new AssertionError("It should contains a command line to execute the program.");
+            throw new IllegalArgumentException("It should contains a command line to execute the program.");
         }
     }
 
 
     private void checkRoverPositionLine(int numberOfParams) {
         if(numberOfParams != ROVER_COMMAND_LINES){
-            throw new AssertionError("Rover initial position parameters should be 3: 2 INTEGERS and 1 CHARACTER");
+            throw new IllegalArgumentException("Rover initial position parameters should be 3: 2 INTEGERS and 1 CHARACTER");
         }
     }
 

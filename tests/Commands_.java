@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
@@ -37,7 +38,7 @@ public class Commands_ {
     }
 
 
-    @Test (expected = AssertionError.class)
+    @Test (expected = IllegalArgumentException.class)
     public void should_throw_no_enough_lines_exception(){
         commandExecution = new CommandExecution("5 5\n1 2 N");
         commandExecution.process();
@@ -49,7 +50,7 @@ public class Commands_ {
         commandExecution.process();
     }
 
-    @Test (expected = AssertionError.class)
+    @Test (expected = IllegalArgumentException.class)
     public void should_throw_no_enough_rover_information_exception(){
         commandExecution = new CommandExecution("5 5\n1 2 N\nRLRLRL\n1 2 N");
         commandExecution.process();
