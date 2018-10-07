@@ -11,7 +11,6 @@ public class Rover_Orientation_ {
 
     @Before
     public void setUp(){
-
         plateau = new Plateau(5,5);
         rover = new Rover(1,3, "N", plateau);
 
