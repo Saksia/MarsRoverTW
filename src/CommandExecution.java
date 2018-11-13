@@ -70,8 +70,10 @@ public class CommandExecution {
 
 
     private void createPlateau(String line) {
+
         String[] plateauParams = line.split(" ");
         checkPlateauLine(plateauParams);
+
         int x = Integer.parseInt(plateauParams[0]);
         int y = Integer.parseInt(plateauParams[1]);
 
@@ -93,7 +95,7 @@ public class CommandExecution {
 
 
     private void checkInputLines(int inputLinesSize){
-        if(inputLinesSize< MIN_INPUT_LINES){
+        if(inputLinesSize < MIN_INPUT_LINES){
             throw new IllegalArgumentException("Input lines should be, at least, 3 lines");
         }
     }

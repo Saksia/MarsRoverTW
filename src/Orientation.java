@@ -9,6 +9,7 @@ enum Orientation {
     private  String left;
     private  String right;
 
+
     Orientation(String value, String left, String right) {
         this.value = value;
         this.left = left;
@@ -28,12 +29,13 @@ enum Orientation {
         return value;
     }
 
-
-
-    private Orientation rotateToThe(String rotationValue) {
+    public static Orientation rotateToThe(String rotationValue) {
         for (Orientation orientation : values()) {
-            if (orientation.value == rotationValue) return orientation;
+            if (orientation.value.equals(rotationValue)) return orientation;
         }
-        return null;
+
+       return null;
     }
+
+
 }

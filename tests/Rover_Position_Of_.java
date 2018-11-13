@@ -8,13 +8,14 @@ public class Rover_Position_Of_ {
 
     private Rover rover;
     private Plateau plateau;
-
+    private Rover deadRover;
 
     @Before
     public void setUp(){
 
         plateau = new Plateau(5,5);
         rover = new Rover(1,2,"N", plateau);
+        deadRover = new Rover(3,3,"E",plateau);
     }
 
     @Test
@@ -37,15 +38,19 @@ public class Rover_Position_Of_ {
         assertThat(rover.executeCommand("LM"), is("0 2 W"));
     }
 
-    @Test (expected = AssertionError.class)
-    public void y_should_not_be_valid(){
-        rover.executeCommand("MMMMMMM");
+
+    @Test
+    public void should_print_rover_last_position_alive_and_rip_when_it_dies(){
+        assertThat(deadRover.executeCommand("MMRMMLMRRM"), is("5 1 E RIP"));
     }
 
-    @Test (expected = AssertionError.class)
-    public void x_should_not_be_valid(){
-        rover.executeCommand("RMMMMMM");
+    @Test
+    public void should_avoid_obstacle_and_print_last_position(){
+        deadRover.executeCommand("MMRMMLMRRM");
+        Rover newRoverAfterDeadRover = new Rover(3,3,"E",plateau);
+        assertThat(newRoverAfterDeadRover.executeCommand("MMRMMLMRRM"), is("4 1 W"));
     }
+
 
 
 }

@@ -20,6 +20,7 @@ public class Commands_ {
 
     @Test
     public void with_one_rover_should_be_correct(){
+
         commandExecution = new CommandExecution(oneRoverCommands);
         assertThat(commandExecution.process(), is("1 3 N"));
     }
