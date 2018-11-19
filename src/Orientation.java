@@ -33,7 +33,6 @@ enum Orientation {
         for (Orientation orientation : values()) {
             if (orientation.value.equals(rotationValue)) return orientation;
         }
-
        return null;
     }
 

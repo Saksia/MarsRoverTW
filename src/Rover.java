@@ -30,7 +30,6 @@ public class Rover {
         this.y = y;
         this.orientation = orientation;
         this.plateau = plateau;
-
         this.rip="";
 
         checksIfPositionIsLegalAndMoves(x,y);
@@ -77,6 +76,7 @@ public class Rover {
         int x = getX();
         int y = getY();
 
+
         switch (orientation_){
             case NORTH:
                 checksIfPositionIsLegalAndMoves(x, y+1);
@@ -99,18 +99,14 @@ public class Rover {
 
 
     private void checksIfPositionIsLegalAndMoves(int newPositionX, int newPositionY){
-
         if(newPositionX > plateau.getUpperRightX() || newPositionX < 0
-                ||  newPositionY > plateau.getUpperRightY() || newPositionY < 0 ){
+                ||  newPositionY > plateau.getUpperRightY() || newPositionY < 0 ) {
             this.rip = "RIP";
-            this.plateau.notPassOrientation.add(getX()+","+getY()+","+orientation_.value());
-
+            this.plateau.notPassOrientation.add(getX() + "," + getY() + "," + orientation_.value());
         }else{
             setX(newPositionX);
             setY(newPositionY);
         }
-
-
     }
 
 
