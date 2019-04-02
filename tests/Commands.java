@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-public class Commands_ {
+public class Commands {
 
     private CommandExecution commandExecution;
     private String oneRoverCommands;

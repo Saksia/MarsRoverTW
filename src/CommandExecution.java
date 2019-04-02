@@ -45,7 +45,7 @@ public class CommandExecution {
     private void executeCommand(Rover rover) {
 
         checkCommandLine();
-        output = output+rover.executeCommand(commandLines.get(0))+"\n";
+        output = output+rover.executeCommand()+"\n";
         removeLine();
     }
 
@@ -59,9 +59,15 @@ public class CommandExecution {
         int y = Integer.parseInt(roverStartPositionParams[1]);
         String orientation = roverStartPositionParams[2];
 
-        rover = new Rover(x,y,orientation,plateau);
 
         removeLine();
+        String command ="";
+        if(!commandLines.isEmpty()){
+            command = commandLines.get(0);
+        }
+
+        rover = new Rover(x,y,orientation,plateau, command);
+
 
         executeCommand(rover);
 

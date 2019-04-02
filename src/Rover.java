@@ -5,7 +5,7 @@ public class Rover {
     private Plateau plateau;
     private String orientation;
     private Orientation orientation_;
-    private String rip;
+    String command;
 
     public int getX() {
         return x;
@@ -25,12 +25,12 @@ public class Rover {
     }
 
 
-    public Rover(int x, int y, String orientation, Plateau plateau){
+    public Rover(int x, int y, String orientation, Plateau plateau, String command){
         this.x = x;
         this.y = y;
         this.orientation = orientation;
         this.plateau = plateau;
-        this.rip="";
+        this.command = command;
 
         checksIfPositionIsLegalAndMoves(x,y);
         setOrientation();
@@ -40,16 +40,12 @@ public class Rover {
         orientation_ = Orientation.rotateToThe(this.orientation);
     }
 
-    public String executeCommand(String command){
-
+    public String executeCommand(){
 
         for (char c : command.toCharArray()) {
-            if(this.rip.equals("RIP")) return setCoordinates();
             if(c == 'L') orientation_ = orientation_.left();
             else if(c == 'R') orientation_ = orientation_.right();
-            else if(c == 'M') {
-                if(checksIfRoverCanMoveForward()) move();
-            }
+            else if(c == 'M') { move(); }
 
             else throw new AssertionError("ERROR. Unexpected command. Commands should be 'L', 'R' or 'M'");
         }
@@ -57,17 +53,9 @@ public class Rover {
         return setCoordinates();
     }
 
-    private boolean checksIfRoverCanMoveForward() {
-
-        String position = getX() + "," + getY() + ","+ orientation_.value();
-        if(this.plateau.notPassOrientation.contains(position)){
-            return false;
-        }
-        return true;
-    }
 
     private String setCoordinates() {
-        return (this.x + " " + this.y + " " + orientation_.value() + " " + this.rip).trim();
+        return (this.x + " " + this.y + " " + orientation_.value()).trim();
     }
 
 
@@ -101,8 +89,7 @@ public class Rover {
     private void checksIfPositionIsLegalAndMoves(int newPositionX, int newPositionY){
         if(newPositionX > plateau.getUpperRightX() || newPositionX < 0
                 ||  newPositionY > plateau.getUpperRightY() || newPositionY < 0 ) {
-            this.rip = "RIP";
-            this.plateau.notPassOrientation.add(getX() + "," + getY() + "," + orientation_.value());
+            throw new AssertionError("ERROR. Rover can't get out of the plateau");
         }else{
             setX(newPositionX);
             setY(newPositionY);
